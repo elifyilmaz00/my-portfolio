@@ -24,17 +24,17 @@
 ## 3. Kodlama ve Mimari Standartları (Reçete & Teknik Altyapı)
 
 ### 🧱 HTML & Yapı (Malzeme Seçimi & Sunum İskeleti)
-- **Semantic HTML (Div Çorbası Yasağı):** Kodlarında asla körüökürüne `<div>` veya `<span>` yığma! Her zaman anlamlı ve modern HTML5 etiketleri (`<header>`, `<main>`, `<section>`, `<article>`, `<nav>`, `<footer>`) kullan. Bu, sitenin arama motorlarında (SEO) zirveye oynaması ve erişilebilirlik (accessibility) standartları için en temel malzememizdir.
+- **Semantic HTML (Div Çorbası Yasağı):** Kodlarında asla körü körüne `<div>` veya `<span>` yığma! Her zaman anlamlı ve modern HTML5 etiketleri (`<header>`, `<main>`, `<section>`, `<article>`, `<nav>`, `<footer>`) kullan. Bu, sitenin arama motorlarında (SEO) zirveye oynaması ve erişilebilirlik (accessibility) standartları için en temel malzememizdir.
 
 ### 🧠 JavaScript & Mantık (Temiz Mutfak Tezgahı)
-- **Dil Ayrımı (Uluslararası Kod, Yerel Açıklama):** Değişken, fonksiyon, interface, tip ve bileşen isimlerini her zaman **İngilizce** ve anlamlı (descriptive) yaz. (`data` yerine `projectList` veya `filteredProjects` gibi).
+- **Dil Ayrımı (Uluslararası Kod, Yerel Açıklama):** Değişken, fonksiyon, interface, tip and bileşen isimlerini her zaman **İngilizce** ve anlamlı (descriptive) yaz. (`data` yerine `projectList` veya `filteredProjects` gibi).
 - **Türkçe Açıklama Satırları:** Yazdığın fonksiyonların ve karmaşık mantıkların üzerine, ne işe yaradığını anlatan kısa, net ve samimi **Türkçe açıklama satırları (comment)** ekle.
 - **Performanslı State Yönetimi:** Durum (state) yönetimini ve DOM etkileşimlerini optimize et. Bir veriyi sadece tek bir bileşen kullanıyorsa global state'e taşıyıp kalabalık yapma, local state (`useState`) kullan. Sayfanın gereksiz yere sürekli yeniden tetiklenmesini (unnecessary re-renders) engelle, hafızayı (RAM) yorma.
-- **Çoklu Dil Desteği (i18n Mimarisi):** Sitede hem Türkçe hem İngilizce dil seçeneği olacaktır. Dil geçişleri (TR/EN) dinamik olmalı, sayfa yenilenmeden (`client-side state`) gerçekleşmeli ve kullanıcının seçimi tarayıcı hafızasında (`localStorage`) saklanmalıdır. Tüm metinsel içerikler (CV verileri dahil) birer `dictionary` (sözlük) yapısında TR ve EN olarak ayrı ayrı yapılandırılmalıdır.
+- **Çoklu Dil Desteği (i18n Mimarisi):** Sitede hem Türkçe hem İngilizce dil seçeneği olacaktır. Dil geçişleri (TR/EN) dinamik olmalı, sayfa yenilenmeden (`client-side state`) gerçekleşmeli ve kullanıcının seçimi tarayıcı hafızasında (`localStorage`) saklanmalıdır. Tüm metinsel içerikler (CV verileri dahil) birer `dictionary` (sözlük) yapısında TR and EN olarak ayrı ayrı yapılandırılmalıdır.
 
 ### 🛡️ Strict TypeScript (Güvenli Mutfak Hijyeni)
 - **Strict TypeScript (any Yasaktır):** Projede asla `any` veri tipi kullanma. Her veri yapısı, fonksiyon parametresi ve bileşen prop'u için kesinlikle `interface` veya `type` tanımları yap. Tip güvenliği, mutfağın hijyen kuralıdır.
-- **Null/Undefined Koruması:** Dışarıdan gelen veya filtelenen verilerde olası çökmeleri engellemek için her zaman güvenli yönlendirmeler (`optional chaining - ?.`) ve varsayılan değerler (fallback values) kullan.
+- **Null/Undefined Koruması:** Dışarıdan gelen veya filtrelenen verilerde olası çökmeleri engellemek için her zaman güvenli yönlendirmeler (`optional chaining - ?.`) ve varsayılan değerler (fallback values) kullan.
 
 ```typescript
 // Seçilen teknoloji etiketine göre portfolyo projelerini filtreler
@@ -74,13 +74,22 @@ Plaintext
 /src/styles                      # Global CSS ve Tailwind konfigürasyonları (Mutfak dekoru)
 Dosya İsimlendirme Kuralı: Tüm bileşen dosyaları PascalCase (ProjectCard.tsx), diğer tüm yardımcı dosyalar ve klasörler kebab-case (use-filtered-data.ts) olmalıdır.
 
-5. Bitiş Kriterleri (Definition of Done)
-Bir görevi veya aşamayı teslim edip benden onay istemeden önce şu 4 maddelik kontrolü yapmak zorundasın:
+5. Bitiş Kriterleri & Otomatik GitHub Push Kuralları (Definition of Done)
+Bir görevi veya aşamayı (Fazı) teslim edip benden onay istemeden önce şu 5 maddelik kontrolü yapmak ve otomatik olarak terminal komutlarını çalıştırmak zorundasın:
 
 Linter & Derleme Kontrolü: Yazdığın kodda hiçbir TypeScript derleme hatası (any ihlali dahil) veya ESLint uyarısı kalmadığından emin ol.
 
-Performans Testi: Cam efektlerinin (Glassmorphism) ve geçiş animasyonlarının tarayıcıyı kasmadığını, 60 FPS akıcılıkta çalıştığını doğrula.
+Performans & Responsive Kontrolü: Cam efektlerinin (Glassmorphism) tarayıcıyı kasmadığını (60 FPS) ve mobil/masaüstü ekranlarda kusursuz durduğunu doğrula.
 
-Responsive Kontrolü: Tasarımın hem mobil cihazlarda hem de geniş masaüstü ekranlarda kırılma yaşamadan kusursuz durduğunu kontrol et.
+Otomatik Git Commit & Push: Bir faz içerisindeki adımlar tamamlandığı an, benden onay beklemeden önce entegre terminali kullanarak şu komutları sırasıyla arka planda çalıştır ve kodları GitHub'a pushla. Commit mesajları HER ZAMAN İngilizce olmalı ve o fazda tam olarak hangi teknik işlerin yapıldığını kısa, net ve profesyonel bir dille (Conventional Commits standartlarında) açıklamalıdır:
 
-Workflow Güncellemesi: workflow.md dosyasındaki ilgili adımı [x] olarak işaretle ve bir sonraki adıma geçmek için hazır olduğunu bana mühendisçe özetleyerek bildir.
+Bash
+git add .
+# Örnek profesyonel commit mesajları:
+# Faz 1 için: git commit -m "feat: setup Next.js project with TypeScript, Tailwind CSS, and i18n dictionary"
+# Faz 2 için: git commit -m "feat: implement glassmorphism navbar and atomic UI components"
+git commit -m "feat: [o fazda yapılan işlerin teknik ve İngilizce özeti]"
+git push origin main
+Push Sonrası Bilgilendirme: Kodları başarıyla pushladıktan sonra bana "Şef, şu şu dosyaları oluşturdum ve kodları başarıyla GitHub reposuna pushladım!" şeklinde net ve mühendisçe bir rapor sun.
+
+Workflow Güncellemesi: workflow.md dosyasındaki ilgili adımı [x] olarak işaretle.

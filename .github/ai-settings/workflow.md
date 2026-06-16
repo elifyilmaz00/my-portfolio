@@ -6,8 +6,8 @@
 - [x] **Adım 1.3:** Çoklu dil desteği için `src/constants/translations.ts` dosyasını oluştur. `skills.md` 3. maddedeki global jargon kurallarına uygun olarak Elif Sultan Yılmaz CV verilerini (TR/EN) merkezi bir sözlük (dictionary) mimarisinde buraya aktar.
 
 ## 🧱 FAZ 2: Bileşen Mimarisi & Atomik Tasarım (Malzeme Ön Hazırlığı)
-- [ ] **Adım 2.1:** Navbar (Navigasyon) bileşenini premium cam efektiyle (`backdrop-blur-md`, `border-white/[0.08]`) ve dil değiştirme butonuyla birlikte oluştur.
-- [ ] **Adım 2.2:** `/src/components/ui` altında yeniden kullanılabilir cam kart (`GlassCard`), şık butonlar ve hover edildiğinde marka rengiyle parıldayan (glow effect) Badge bileşenlerini yaz. Asla `any` kullanma!
+- [x] **Adım 2.1:** Navbar (Navigasyon) bileşenini premium cam efektiyle (`backdrop-blur-md`, `border-white/[0.08]`) ve dil değiştirme butonuyla birlikte oluştur.
+- [x] **Adım 2.2:** `/src/components/ui` altında yeniden kullanılabilir cam kart (`GlassCard`), şık butonlar ve hover edildiğinde marka rengiyle parıldayan (glow effect) Badge bileşenlerini yaz. Asla `any` kullanma!
 
 ## 🎨 FAZ 3: Sayfalar ve Hikayeleştirme (Sunum Tabağı)
 - [ ] **Adım 3.1:** Hero Section & Hakkımda: Başkent Üniversitesi mühendislik altyapını ve GDSC Core Team liderlik deneyimini kurumsal/prestijli bir dille anlatan giriş alanını tasarla. Arka plana soft CSS grid çizgileri serpiştir.
