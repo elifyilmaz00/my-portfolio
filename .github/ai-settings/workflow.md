@@ -10,10 +10,10 @@
 - [x] **Adım 2.2:** `/src/components/ui` altında yeniden kullanılabilir cam kart (`GlassCard`), şık butonlar ve hover edildiğinde marka rengiyle parıldayan (glow effect) Badge bileşenlerini yaz. Asla `any` kullanma!
 
 ## 🎨 FAZ 3: Sayfalar ve Hikayeleştirme (Sunum Tabağı)
-- [ ] **Adım 3.1:** Hero Section & Hakkımda: Başkent Üniversitesi mühendislik altyapını ve GDSC Core Team liderlik deneyimini kurumsal/prestijli bir dille anlatan giriş alanını tasarla. Arka plana soft CSS grid çizgileri serpiştir.
-- [ ] **Adım 3.2:** Skills (Yetenekler): `skills.md` dosyasındaki 3 ana kategoriye göre (Frontend Core, Engineering, CS Fundamentals) modüler cam kartları yerleştir. İlerleme çubukları yerine parıldayan şık ikon ve etiketleri map et.
-- [ ] **Adım 3.3:** Deneyimler (Stajlar): EHSİM ve DataFlowX stajlarını düz metin olarak değil; asenkron veri yönetimi, veri görselleştirme ve filtreleme başarıları olarak hikayeleştirerek kronolojik bir timeline (zaman çizgisi) ile sun.
-- [ ] **Adım 3.4:** Projeler: Antigravity Todo App en tepede olacak şekilde; Weather App, Movie Portal ve UniVerse 3D Campus projelerini cam kartlar halinde listele. Asenkron veri simülasyonu için parıldayan İskelet Ekranlar (Skeleton Loaders) ekle.
+- [x] **Adım 3.1:** Hero Section & Hakkımda: Başkent Üniversitesi mühendislik altyapını ve GDSC Core Team liderlik deneyimini kurumsal/prestijli bir dille anlatan giriş alanını tasarla. Arka plana soft CSS grid çizgileri serpiştir.
+- [x] **Adım 3.2:** Skills (Yetenekler): `skills.md` dosyasındaki 3 ana kategoriye göre (Frontend Core, Engineering, CS Fundamentals) modüler cam kartları yerleştir. İlerleme çubukları yerine parıldayan şık ikon ve etiketleri map et.
+- [x] **Adım 3.3:** Deneyimler (Stajlar): EHSİM ve DataFlowX stajlarını düz metin olarak değil; asenkron veri yönetimi, veri görselleştirme ve filtreleme başarıları olarak hikayeleştirerek kronolojik bir timeline (zaman çizgisi) ile sun.
+- [x] **Adım 3.4:** Projeler: Antigravity Todo App en tepede olacak şekilde; Weather App, Movie Portal ve UniVerse 3D Campus projelerini cam kartlar halinde listele. Asenkron veri simülasyonu için parıldayan İskelet Ekranlar (Skeleton Loaders) ekle.
 
 ## 🛑 FAZ 4: Güvenlik, Performans ve Cilalama (Son Kontroller)
 - [ ] **Adım 4.1:** Tüm asenkron işlemlere ve form yapılarına `try-catch` blokları ekle. Olası bir patlamada gösterilecek premium hata arayüzünü ve *"Kod tabanında ufak bir yan etki oluştu..."* mesajını entegre et.
