@@ -1,13 +1,42 @@
-'use client';
-
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/hooks/use-language';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { Button } from '@/components/ui/Button';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Form gönderimini asenkron olarak ve try-catch kontrolünde simüle eder
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus('idle');
+
+    try {
+      // Asenkron sunucu/API istek simülasyonu
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // %15 ihtimalle hata senaryosunu canlandırıyoruz (DoD hata yönetimi testi için)
+          if (Math.random() < 0.15) {
+            reject(new Error('Simulated network failure'));
+          } else {
+            resolve(true);
+          }
+        }, 1500);
+      });
+
+      setStatus('success');
+    } catch (error) {
+      // Hata yakalama ve konsola yazdırma
+      console.error('İletişim formu gönderim hatası:', error);
+      setStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
@@ -65,39 +94,74 @@ export const Contact: React.FC = () => {
             </GlassCard>
           </div>
 
-          {/* İletişim Formu */}
-          <GlassCard className="flex flex-col gap-4">
-            <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs text-fg-dark/70 font-semibold">{t.contact.nameLabel}</label>
-                <input 
-                  type="text" 
-                  className="w-full px-4 py-2.5 rounded-xl glass-effect border border-white/10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors" 
-                  required 
-                  autoComplete="off"
-                />
+          {/* İletişim Formu ve Durum Arayüzleri */}
+          <GlassCard className="flex flex-col gap-4 relative min-h-[350px] justify-center">
+            {status === 'success' ? (
+              // Başarı Ekranı
+              <div className="flex flex-col items-center text-center p-6 animate-fade-in">
+                <CheckCircle2 className="w-16 h-16 text-primary mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">Mesajınız Alındı!</h3>
+                <p className="text-sm text-fg-dark/70 mb-6">En kısa sürede dönüş sağlayacağım.</p>
+                <Button variant="glass" onClick={() => setStatus('idle')} className="text-xs border border-white/10">
+                  Yeni Mesaj Gönder
+                </Button>
               </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs text-fg-dark/70 font-semibold">{t.contact.emailLabel}</label>
-                <input 
-                  type="email" 
-                  className="w-full px-4 py-2.5 rounded-xl glass-effect border border-white/10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors" 
-                  required 
-                  autoComplete="off"
-                />
+            ) : status === 'error' ? (
+              // Premium Hata Arayüzü (DoD Kuralı)
+              <div className="flex flex-col items-center text-center p-6 animate-fade-in">
+                <AlertTriangle className="w-16 h-16 text-accent mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">Gönderim Başarısız</h3>
+                <p className="text-sm text-fg-dark/80 mb-6 leading-relaxed">
+                  Kod tabanında ufak bir yan etki (side-effect) oluştu. Sistem mühendisi (ben) durumu hemen inceliyor!
+                </p>
+                <Button variant="glass" onClick={() => setStatus('idle')} className="text-xs border border-white/10">
+                  Tekrar Dene
+                </Button>
               </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs text-fg-dark/70 font-semibold">{t.contact.messageLabel}</label>
-                <textarea 
-                  rows={4} 
-                  className="w-full px-4 py-2.5 rounded-xl glass-effect border border-white/10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors resize-none" 
-                  required
-                ></textarea>
-              </div>
-              <Button type="submit" variant="primary">
-                {t.contact.sendButton}
-              </Button>
-            </form>
+            ) : (
+              // Form Ekranı
+              <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs text-fg-dark/70 font-semibold">{t.contact.nameLabel}</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-2.5 rounded-xl glass-effect border border-white/10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors" 
+                    required 
+                    autoComplete="off"
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs text-fg-dark/70 font-semibold">{t.contact.emailLabel}</label>
+                  <input 
+                    type="email" 
+                    className="w-full px-4 py-2.5 rounded-xl glass-effect border border-white/10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors" 
+                    required 
+                    autoComplete="off"
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs text-fg-dark/70 font-semibold">{t.contact.messageLabel}</label>
+                  <textarea 
+                    rows={4} 
+                    className="w-full px-4 py-2.5 rounded-xl glass-effect border border-white/10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors resize-none" 
+                    required
+                    disabled={isSubmitting}
+                  ></textarea>
+                </div>
+                <Button type="submit" variant="primary" disabled={isSubmitting} className="gap-2">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Gönderiliyor...</span>
+                    </>
+                  ) : (
+                    <span>{t.contact.sendButton}</span>
+                  )}
+                </Button>
+              </form>
+            )}
           </GlassCard>
         </div>
       </div>

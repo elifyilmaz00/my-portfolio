@@ -16,6 +16,6 @@
 - [x] **Adım 3.4:** Projeler: Antigravity Todo App en tepede olacak şekilde; Weather App, Movie Portal ve UniVerse 3D Campus projelerini cam kartlar halinde listele. Asenkron veri simülasyonu için parıldayan İskelet Ekranlar (Skeleton Loaders) ekle.
 
 ## 🛑 FAZ 4: Güvenlik, Performans ve Cilalama (Son Kontroller)
-- [ ] **Adım 4.1:** Tüm asenkron işlemlere ve form yapılarına `try-catch` blokları ekle. Olası bir patlamada gösterilecek premium hata arayüzünü ve *"Kod tabanında ufak bir yan etki oluştu..."* mesajını entegre et.
-- [ ] **Adım 4.2:** Projeyi baştan sona optional chaining (`?.`) süzgecinden geçirerek null/undefined çökmelerini sıfırla.
-- [ ] **Adım 4.3:** Tüm siteyi mobil öncelikli (Mobile-First) responsive testlerinden geçir. `npm run lint` ve `npm run build` komutlarını çalıştırarak sıfır hata (Zero Warning/Error) ile derle.
+- [x] **Adım 4.1:** Tüm asenkron işlemlere ve form yapılarına `try-catch` blokları ekle. Olası bir patlamada gösterilecek premium hata arayüzünü ve *"Kod tabanında ufak bir yan etki oluştu..."* mesajını entegre et.
+- [x] **Adım 4.2:** Projeyi baştan sona optional chaining (`?.`) süzgecinden geçirerek null/undefined çökmelerini sıfırla.
+- [x] **Adım 4.3:** Tüm siteyi mobil öncelikli (Mobile-First) responsive testlerinden geçir. `npm run lint` ve `npm run build` komutlarını çalıştırarak sıfır hata (Zero Warning/Error) ile derle.
